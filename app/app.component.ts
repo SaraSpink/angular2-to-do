@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
     <h1>To Do List for {{month}}/{{day}}/{{year}}</h1>
     <h3>{{currentFocus}}</h3>
     <ul>
-       <li *ngFor="let currentTask of tasks">{{currentTask.description}} <span id="priorityColor">{{currentTask.priority}}</span></li>
+       <li (click)="isDone(currentTask)" *ngFor="let currentTask of tasks">{{currentTask.description}} <span id="priorityColor">{{currentTask.priority}}</span> <button (click)="editTask()">Edit!</button></li>
     </ul>
   </div>
   `
@@ -24,6 +24,18 @@ export class AppComponent {
     new Task('Begin brainstorming possible JavaScript group projects', 'low'),
     new Task('Add README file to last few Angular repos on GitHub', 'medium')
   ];
+
+  editTask() {
+   alert("You just requested to edit a Task!");
+  }
+
+  isDone(clickedTask: Task) {
+    if(clickedTask.done === true) {
+      alert("this task is done!!");
+    } else {
+      alert("This task is NOT done. Get it together, keep it together!!!");
+    }
+  }
 }
 
 export class Task {
